@@ -190,6 +190,7 @@ def additem(request):
 			newitem = item(title = title, price = price, description = description, category = category, owner = owner, image = image)
 			newitem.save()
 
+			return redirect('profile')
 			#print('Item is saved')
 
 
@@ -213,7 +214,7 @@ def delitem(request, it = ''):
 
 
 def viewitem(request, it = ''):
-	print("Hey this is viewitem")
+	#print("Hey this is viewitem")
 
 	context = {}
 

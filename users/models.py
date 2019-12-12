@@ -25,7 +25,7 @@ CATEGORY_CHOICES = (
 
 class item(models.Model):
 
-	title = models.CharField(max_length = 100)
+	title = models.CharField(max_length = 100, unique = True)
 	createdAt = models.DateTimeField(auto_now_add = True)
 	price = models.FloatField()
 	description = models.TextField()
