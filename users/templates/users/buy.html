@@ -1,0 +1,72 @@
+{% extends 'users/base.html' %}
+
+
+{% block head %}
+	
+	<style type="text/css">
+
+
+		.row-fluid {
+			margin-bottom: 12%;
+		}
+
+
+	</style>
+		
+	
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+	
+
+	<div class="container">
+
+	<h1>Buy</h1>
+
+		<hr style="margin-top: 0%">
+
+		<div class="row" >
+			
+			{% for c in collist %}
+
+				<div class="col" >
+					
+					
+					{% for item in c %}
+						<div class= "row-fluid">
+
+						<div class="card">
+						  <img class="card-img-top" src="{{ item.image.url }}" alt="Card image">
+						  <div class="card-body">
+						    <h4 class="card-title">{{item.title}}</h4>
+						    <p class="card-text">Rs. {{item.price}}</p>
+						   		
+						    <form method="post" action="{% url 'viewitem' item.title %}">
+						   		{% csrf_token %}
+						   		<input type="submit" value="View">
+						   	</form>
+						   			
+
+						  </div>
+						</div>			
+
+						</div>
+					{% endfor %}	
+					
+
+				</div>
+
+
+			{% endfor %}
+
+		</div>
+	
+
+	</div>
+
+{% endblock %}

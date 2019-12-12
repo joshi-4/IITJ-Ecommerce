@@ -1,0 +1,79 @@
+{% extends 'users/base.html' %}
+
+
+{% block head %}
+	
+	<style type="text/css">
+
+
+		.row-fluid {
+			margin-bottom: 12%;
+		}
+
+
+	</style>
+		
+
+{% endblock %}
+
+
+{% block content %}
+	
+	<div class="container" >
+
+	<h1>Profile</h1>	
+
+	{% for d in data %}
+		
+		<h4>Name:  <span class="badge badge-light"> {{ d.name }} </span> </h4>
+		<h4>Username:  <span class="badge badge-light"> {{ d.user }} </span>  </h4>
+		<h4>Phone:  <span class="badge badge-light"> {{ d.phone_num }} </span> </h4>
+		<h4>Address:  <span class="badge badge-light"> {{ d.address }} </span> </h4>
+
+
+	{% endfor %}
+
+
+
+	<h4>Your Items:</h4> 
+
+		<div class="row" >
+			
+			{% for c in collist %}
+
+				<div class="col" >
+					
+					
+					{% for item in c %}
+						<div class= "row-fluid">
+
+							<div class="card">
+							  <img class="card-img-top" src="{{ item.image.url }}" alt="Card image">
+							  <div class="card-body">
+							    <h4 class="card-title">{{item.title}}</h4>
+							    <p class="card-text">Rs. {{item.price}}</p>
+
+							   	<form method="post" action="{% url 'delitem' item.title %}">
+							   		{% csrf_token %}
+							   			<input type="submit" value="Remove">
+							   		
+							   	</form>
+
+							  </div>
+							</div>					
+								
+
+						</div>
+					{% endfor %}	
+					
+
+				</div>
+
+
+			{% endfor %}
+
+		</div>	
+		
+	
+	</div>
+{% endblock %}
